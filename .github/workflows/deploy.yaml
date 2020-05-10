@@ -1,0 +1,24 @@
+name: Deploy
+
+on:
+  push:
+    tags:
+    - v*
+
+jobs:
+  deploy-build:
+    name: Deploy (*)
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup repository
+      run: |
+        pip install conan
+        conan remote add conan-iceshard https://conan.iceshard.net/
+    - name: Build
+      run: |
+        conan export . fastbuild-installer/1.00@iceshard/stable
+    - name: Deploy
+      run: |
+        conan user iceshard -r conan-iceshard -p ${{ secrets.CONAN_PASSWORD }}
+        conan upload -r conan-iceshard fastbuild-installer/1.00@iceshard/stable
