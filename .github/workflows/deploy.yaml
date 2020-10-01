@@ -17,8 +17,8 @@ jobs:
         conan remote add conan-iceshard https://conan.iceshard.net/
     - name: Build
       run: |
-        conan export . fastbuild-installer/1.00@iceshard/stable
+        conan export . fastbuild-installer/1.02@iceshard/stable
     - name: Deploy
       run: |
         conan user iceshard -r conan-iceshard -p ${{ secrets.CONAN_PASSWORD }}
-        conan upload -r conan-iceshard fastbuild-installer/1.00@iceshard/stable
+        conan upload -r conan-iceshard fastbuild-installer/1.02@iceshard/stable
