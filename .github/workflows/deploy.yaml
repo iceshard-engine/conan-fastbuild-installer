@@ -21,4 +21,4 @@ jobs:
     - name: Deploy
       run: |
         conan user iceshard -r conan-iceshard -p ${{ secrets.CONAN_PASSWORD }}
-        conan upload -r conan-iceshard fastbuild-installer/1.02@iceshard/stable
+        conan upload -r conan-iceshard fastbuild-installer/1.02@iceshard/stable --all
