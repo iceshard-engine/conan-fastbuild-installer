@@ -11,11 +11,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
-    - name: Setup conna
+    - name: Setup conan
       run: |
         python3 -m pip install --user pipx
         python3 -m pipx ensurepath
-        pipx install conan
+        python3 -m pipx install conan
         conan remote add conan-iceshard https://conan.iceshard.net/
     - name: Export
       run: |
