@@ -6,3 +6,6 @@ sources:
       url: "http://fastbuild.org/downloads/v1.00/FASTBuild-Windows-x64-v1.00.zip"
     "1.02":
       url: "http://fastbuild.org/downloads/v1.02/FASTBuild-Windows-x64-v1.02.zip"
+  Linux:
+    "1.02": 
+      url: "https://fastbuild.org/downloads/v1.02/FASTBuild-Linux-x64-v1.02.zip"
