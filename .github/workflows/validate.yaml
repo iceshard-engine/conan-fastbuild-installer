@@ -21,4 +21,4 @@ jobs:
         ~/.local/bin/conan export . fastbuild-installer/1.02@iceshard/stable
     - name: Success
       run: |
-        Build successful
+        echo 'Validation success'
