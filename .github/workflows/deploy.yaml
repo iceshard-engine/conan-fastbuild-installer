@@ -32,7 +32,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Setup conan
       run: |
-        pip install conan
+        pip3 install conan
         conan remote add conan-iceshard https://conan.iceshard.net/
     - name: Export recipe
       run: |
