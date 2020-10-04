@@ -27,7 +27,7 @@ jobs:
         
   deploy-build-windows:
     name: Deploy (Windows)
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
     - name: Setup conan
