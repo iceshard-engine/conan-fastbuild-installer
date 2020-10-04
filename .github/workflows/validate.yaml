@@ -1,0 +1,25 @@
+name: Validate
+
+on: 'push'
+
+jobs:
+  validation-build:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    name: Validate (*)
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup conna
+      run: |
+        python3 -m pip install --user pipx
+        python3 -m pipx ensurepath
+        pipx install conan
+        conan remote add conan-iceshard https://conan.iceshard.net/
+    - name: Export
+      run: |
+        conan export . fastbuild-installer/1.02@iceshard/stable
+    - name: Success
+      run: |
+        Build successful
