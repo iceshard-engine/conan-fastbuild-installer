@@ -7,8 +7,11 @@ on:
 
 jobs:
   deploy-build:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
     name: Deploy (*)
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v1
     - name: Setup repository
