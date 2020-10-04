@@ -13,14 +13,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Setup conan
       run: |
-        apt-get install python3-venv
-        python3 -m pip install --user pipx
-        python3 -m pipx ensurepath
-        python3 -m pipx install conan
-        conan remote add conan-iceshard https://conan.iceshard.net/
+        python3 -m pip install conan
+        ~/.local/bin/conan remote add conan-iceshard https://conan.iceshard.net/
     - name: Export
       run: |
-        conan export . fastbuild-installer/1.02@iceshard/stable
+        ~/.local/bin/conan export . fastbuild-installer/1.02@iceshard/stable
     - name: Success
       run: |
         Build successful
