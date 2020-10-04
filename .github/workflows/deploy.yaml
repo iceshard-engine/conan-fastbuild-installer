@@ -6,19 +6,35 @@ on:
     - v*
 
 jobs:
-  deploy-build:
-    strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest]
-    name: Deploy (*)
+
+  deploy-build-ubuntu:
+    name: Deploy (Ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup conan
+      run: |
+        pip3 install setuptools
+        pip3 install conan
+        ~/.local/bin/conan remote add conan-iceshard https://conan.iceshard.net/
+    - name: Export recipe
+      run: | 
+        ~/.local/bin/conan export . fastbuild-installer/1.02@iceshard/stable
+    - name: Deploy
+      run: |
+        ~/.local/bin/conan user iceshard -r conan-iceshard -p ${{ secrets.CONAN_PASSWORD }}
+        ~/.local/bin/conan upload -r conan-iceshard fastbuild-installer/1.02@iceshard/stable --all
+        
+  deploy-build-windows:
+    name: Deploy (Windows)
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v1
-    - name: Setup repository
+    - uses: actions/checkout@v2
+    - name: Setup conan
       run: |
-        pip install conan
+        pip3 install conan
         conan remote add conan-iceshard https://conan.iceshard.net/
-    - name: Build
+    - name: Export recipe
       run: |
         conan export . fastbuild-installer/1.02@iceshard/stable
     - name: Deploy
