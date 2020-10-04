@@ -3,7 +3,7 @@ name: Validate
 on: 'push'
 
 jobs:
-  
+
   validation-build-ubuntu:
     name: Validate (Ubuntu)
     runs-on: ubuntu-latest
