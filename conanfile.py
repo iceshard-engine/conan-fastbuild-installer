@@ -18,9 +18,17 @@ class FASTBuildInstallerConan(ConanFile):
         self.copy("LICENSE.TXT", dst="LICENSE")
         if self.settings.os == "Windows":
             self.copy("FBuild.exe", keep_path=False)
+            self.copy("FBuildWorker.exe", keep_path=False)
         if self.settings.os == "Linux":
             self.copy("fbuild", keep_path=False)
             self.copy("fbuildworker", keep_path=False)
 
     def package_info(self):
-        self.env_info.path.append(self.package_folder)
+        self.env_info.PATH.append(self.package_folder)
+
+        if self.settings.os == "Windows":
+            self.env_info.FBUILD_EXE = os.path.join(self.package_folder, "FBuild.exe")
+            self.env_info.FBUILDWORKER_EXE = os.path.join(self.package_folder, "FBuildWorker.exe")
+        if self.settings.os == "Linux":
+            self.env_info.FBUILD_EXE = os.path.join(self.package_folder, "fbuild")
+            self.env_info.FBUILDWORKER_EXE = os.path.join(self.package_folder, "fbuildworker")
