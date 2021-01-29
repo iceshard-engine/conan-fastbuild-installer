@@ -19,11 +19,11 @@ jobs:
         ~/.local/bin/conan remote add conan-iceshard https://conan.iceshard.net/
     - name: Export recipe
       run: |
-        ~/.local/bin/conan create . fastbuild-installer/1.02@iceshard/stable
+        ~/.local/bin/conan create . fastbuild-installer/1.04@iceshard/stable
     - name: Deploy
       run: |
         ~/.local/bin/conan user iceshard -r conan-iceshard -p ${{ secrets.CONAN_PASSWORD }}
-        ~/.local/bin/conan upload -r conan-iceshard fastbuild-installer/1.02@iceshard/stable --all
+        ~/.local/bin/conan upload -r conan-iceshard fastbuild-installer/1.04@iceshard/stable --all
 
   deploy-build-windows:
     name: Deploy (Windows)
@@ -36,8 +36,8 @@ jobs:
         conan remote add conan-iceshard https://conan.iceshard.net/
     - name: Export recipe
       run: |
-        conan create . fastbuild-installer/1.02@iceshard/stable
+        conan create . fastbuild-installer/1.04@iceshard/stable
     - name: Deploy
       run: |
         conan user iceshard -r conan-iceshard -p ${{ secrets.CONAN_PASSWORD }}
-        conan upload -r conan-iceshard fastbuild-installer/1.02@iceshard/stable --all
+        conan upload -r conan-iceshard fastbuild-installer/1.04@iceshard/stable --all

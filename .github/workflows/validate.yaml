@@ -16,7 +16,7 @@ jobs:
         ~/.local/bin/conan remote add conan-iceshard https://conan.iceshard.net/
     - name: Export
       run: |
-        ~/.local/bin/conan export . fastbuild-installer/1.02@iceshard/stable
+        ~/.local/bin/conan export . fastbuild-installer/1.04@iceshard/stable
     - name: Success
       run: |
         echo 'Validation success'
@@ -33,7 +33,7 @@ jobs:
         conan remote add conan-iceshard https://conan.iceshard.net/
     - name: Export
       run: |
-        conan export . fastbuild-installer/1.02@iceshard/stable
+        conan export . fastbuild-installer/1.04@iceshard/stable
     - name: Success
       run: |
         echo 'Validation success'
